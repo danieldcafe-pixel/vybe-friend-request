@@ -330,15 +330,8 @@ main::-webkit-scrollbar{display:none}
     setTimeout(() => toast.classList.remove("show"), 3800);
   }
 
+  
   document.addEventListener("keydown", (event) => {
-    if (event.key === "F9" || event.code === "F9") {
-      event.preventDefault();
-      event.stopPropagation();
-      sendRequest();
-      return;
-    }
-
-    // Allow browser fullscreen key; every other key is visually inert.
     if (event.key !== "F11") {
       event.preventDefault();
       event.stopPropagation();
@@ -347,13 +340,14 @@ main::-webkit-scrollbar{display:none}
 
   document.addEventListener("keypress", e => e.preventDefault(), true);
   document.addEventListener("keyup", e => {
-    if (e.key !== "F9" && e.key !== "F11") e.preventDefault();
+    if (e.key !== "F11") e.preventDefault();
   }, true);
-
-  // Mouse clicks are disabled for continuity during filming.
-  document.addEventListener("click", e => {
-    if (e.target.closest("#requestButton")) e.preventDefault();
   }, true);
+  // Click on the button sends the friend request.
+  button.addEventListener("click", (e) => {
+    e.preventDefault();
+    sendRequest();
+  });
 })();
 </script>
 </body>
