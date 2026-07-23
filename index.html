@@ -317,12 +317,11 @@ main::-webkit-scrollbar{display:none}
 (() => {
   const button = document.getElementById("requestButton");
   const toast = document.getElementById("toast");
-  let sent = false;
 
   button.addEventListener("click", () => {
-    sent = !sent;
+    const adding = button.textContent.trim() === "Add Friend";
 
-    if (sent) {
+    if (adding) {
       button.textContent = "Request Sent";
       button.classList.add("sent");
       toast.textContent = "Friend request sent";
