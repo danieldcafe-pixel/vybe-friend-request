@@ -307,48 +307,27 @@ main::-webkit-scrollbar{display:none}
   <div><strong>Friend request sent</strong><span>Bo Deveraux will be notified.</span></div>
 </div>
 
+
 <script>
 (() => {
   const button = document.getElementById("requestButton");
   const toast = document.getElementById("toast");
   let sent = false;
 
-  function sendRequest() {
+  button.addEventListener("click", () => {
     if (sent) return;
     sent = true;
 
-    button.classList.add("pulse");
-    button.textContent = "Sending…";
+    button.textContent = "Request Sent";
+    button.classList.add("sent");
+    toast.classList.add("show");
 
     setTimeout(() => {
-      button.classList.remove("pulse");
-      button.classList.add("sent");
-      button.textContent = "Request Sent";
-      toast.classList.add("show");
-    }, 480);
-
-    setTimeout(() => toast.classList.remove("show"), 3800);
-  }
-
-  
-  document.addEventListener("keydown", (event) => {
-    if (event.key !== "F11") {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-  }, true);
-
-  document.addEventListener("keypress", e => e.preventDefault(), true);
-  document.addEventListener("keyup", e => {
-    if (e.key !== "F11") e.preventDefault();
-  }, true);
-  }, true);
-  // Click on the button sends the friend request.
-  button.addEventListener("click", (e) => {
-    e.preventDefault();
-    sendRequest();
+      toast.classList.remove("show");
+    }, 3000);
   });
 })();
 </script>
+
 </body>
 </html>
