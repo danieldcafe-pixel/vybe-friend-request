@@ -320,16 +320,18 @@ main::-webkit-scrollbar{display:none}
   let sent = false;
 
   button.addEventListener("click", () => {
-    if (sent) return;
-    sent = true;
+    sent = !sent;
 
-    button.textContent = "Request Sent";
-    button.classList.add("sent");
-    toast.classList.add("show");
-
-    setTimeout(() => {
+    if (sent) {
+      button.textContent = "Request Sent";
+      button.classList.add("sent");
+      toast.textContent = "Friend request sent";
+      toast.classList.add("show");
+    } else {
+      button.textContent = "Add Friend";
+      button.classList.remove("sent");
       toast.classList.remove("show");
-    }, 3000);
+    }
   });
 })();
 </script>
